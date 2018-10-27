@@ -1,9 +1,9 @@
 {
     "listhome": [
         {
-            "quanity": "Số lượng phòng - 2 phòng",
+            "quantity": "Số lượng phòng - 2 phòng",
             "star": 5,
-            "name": "Nhà tình nhân",
+            "name": "Homestay Vina",
             "price": "220.000Đ / Người",
             "date": "22/12/2017",
             "category": "Nhà ở & Khách sạn",
@@ -14,9 +14,9 @@
             "phone": "09647376541"
         },
         {
-            "quanity": "Số lượng phòng - 3 phòng",
+            "quantity": "Số lượng phòng - 3 phòng",
             "star": 4,
-            "name": "Nhà tình nhân",
+            "name": "Adora Hotel",
             "price": "220.000Đ / Người",
             "date": "22/12/2017",
             "category": "Nhà ở & Khách sạn",
@@ -27,9 +27,9 @@
             "phone": "09647376541"
         },
         {
-            "quanity": "Số lượng phòng - 2 phòng",
+            "quantity": "Số lượng phòng - 2 phòng",
             "star": 3,
-            "name": "Nhà tình nhân",
+            "name": "White house",
             "price": "220.000Đ / Người",
             "date": "22/12/2017",
             "category": "Nhà ở & Khách sạn",
@@ -40,7 +40,7 @@
             "phone": "09647376541"
         },
         {
-            "quanity": "Số lượng phòng - 2 phòng",
+            "quantity": "Số lượng phòng - 2 phòng",
             "star": 5,
             "name": "Nhà tình nhân",
             "price": "220.000Đ / Người",

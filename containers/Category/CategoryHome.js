@@ -82,7 +82,10 @@ class CategoryHome extends React.Component {
         let {listHome} = this.props;
         console.log(listHome)
         var list = listHome.listHome.map((item, index) => {
-            return <TouchableOpacity style={styles.containerItem} onPress={this.props.handleViewDetail} key={index}>
+            return <TouchableOpacity style={styles.containerItem} onPress={()=>
+                this.props.handleViewDetail(item)
+            } 
+            key={index}>
             <Swiper style={styles.slideItem} showsButtons={false} dot={<View style={{
                 backgroundColor: "#ccc",
                 width: 8,
@@ -127,7 +130,7 @@ class CategoryHome extends React.Component {
             </Swiper>
             <View style={styles.bottomItem}>
                 <View style={styles.textItem}>
-                    <Text style={styles.desText} uppercase>{item.quanity}</Text>
+                    <Text style={styles.desText} uppercase>{item.quantity}</Text>
                     <Text style={styles.nameItem}>{item.name}</Text>
                     <Text style={styles.priceItem}>{item.price}</Text>
                     <View style={styles.rating}>

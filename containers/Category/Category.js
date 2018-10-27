@@ -36,11 +36,14 @@ import CategoryHome from './CategoryHome';
 import  CategoryOthers from './CategoryOthers';
 import CategoryFood from './CategoryFood';
 import DetailCategory from '../DetailCategory/DetailCategory';
-
+import DetailHomeCategory from '../DetailCategory/DetailHomeCategory'
 class CategoryContainer extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+  handleViewDetail=(item)=>{
+    this.props.navigation.navigate('DetailHomeCategory', {typeCategory : 'homeCategory', 'item': item})
   }
   render() {
     const { params } = this.props.navigation.state;
@@ -57,15 +60,14 @@ class CategoryContainer extends React.Component {
     params.typeCategory === 'foodCategory'){
         return <CategoryFood
                 navigation={this.props.navigation}
-                handleViewDetail={()=>{
-                this.props.navigation.navigate('DetailCategory', {typeCategory : 'homeCategory'})
-                }}
+                handleViewDetail={this.handleViewDetail(item)}
+           
       /> ;
     }else
         return <CategoryHome 
                 navigation={this.props.navigation}
-                handleViewDetail={()=>{
-                    this.props.navigation.navigate('DetailCategory', {typeCategory : 'homeCategory'})
+                handleViewDetail={(item)=>{
+                    this.props.navigation.navigate('DetailHomeCategory', {typeCategory : 'homeCategory', 'item': item})
                 }}
                 />
   }
@@ -74,6 +76,7 @@ const Category = StackNavigator(
   {
     CategoryContainer: { screen: CategoryContainer },
     DetailCategory: { screen: DetailCategory },
+    DetailHomeCategory : {screen: DetailHomeCategory},
   },
   {
     headerMode: 'none',    
