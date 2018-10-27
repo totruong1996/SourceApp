@@ -1,0 +1,56 @@
+{
+    "listhome": [
+        {
+            "quanity": "Số lượng phòng - 2 phòng",
+            "star": 5,
+            "name": "Nhà tình nhân",
+            "price": "220.000Đ / Người",
+            "date": "22/12/2017",
+            "category": "Nhà ở & Khách sạn",
+            "poster": "Tuấn Đặng",
+            "opentime": "Mở cửa 8h - 23h30 ",
+            "service": "Cung cấp thức ăn nhẹ , cà phê",
+            "email": "tuandangminhttt.@gmail.com",
+            "phone": "09647376541"
+        },
+        {
+            "quanity": "Số lượng phòng - 3 phòng",
+            "star": 4,
+            "name": "Nhà tình nhân",
+            "price": "220.000Đ / Người",
+            "date": "22/12/2017",
+            "category": "Nhà ở & Khách sạn",
+            "poster": "Tuấn Đặng",
+            "opentime": "Mở cửa 8h - 23h30 ",
+            "service": "Cung cấp thức ăn nhẹ , cà phê",
+            "email": "tuandangminhttt.@gmail.com",
+            "phone": "09647376541"
+        },
+        {
+            "quanity": "Số lượng phòng - 2 phòng",
+            "star": 3,
+            "name": "Nhà tình nhân",
+            "price": "220.000Đ / Người",
+            "date": "22/12/2017",
+            "category": "Nhà ở & Khách sạn",
+            "poster": "Tuấn Đặng",
+            "opentime": "Mở cửa 8h - 23h30 ",
+            "service": "Cung cấp thức ăn nhẹ , cà phê",
+            "email": "tuandangminhttt.@gmail.com",
+            "phone": "09647376541"
+        },
+        {
+            "quanity": "Số lượng phòng - 2 phòng",
+            "star": 5,
+            "name": "Nhà tình nhân",
+            "price": "220.000Đ / Người",
+            "date": "22/12/2017",
+            "category": "Nhà ở & Khách sạn",
+            "poster": "Tuấn Đặng",
+            "opentime": "Mở cửa 8h - 23h30 ",
+            "service": "Cung cấp thức ăn nhẹ , cà phê",
+            "email": "tuandangminhttt.@gmail.com",
+            "phone": "09647376541"
+        }
+    ]
+}

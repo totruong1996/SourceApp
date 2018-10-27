@@ -1,0 +1,49 @@
+{
+    "listFood":[
+        {
+            "quanity": "Số lượng phòng - 2 phòng",
+            "star": 5,
+            "name":"Bún bò Huế",
+            "price": "35000 - 50000 vnd",
+            "date": "22/12/2017",
+            "category" : "Ẩm thực và đời sống",
+            "author" : "Tuấn Đặng",
+            "opentime" : "Mở cửa 8h - 23h30 ",
+            "service" : "Cung cấp thức ăn nhẹ , cà phê",
+            "email":  "tuandangminhttt.@gmail.com",
+            "phone": "09647376541",
+            "address" : "Tọa lạc trên trên 22/15 Nguyễn Văn Cừ , Quận 5 , CoupleHouse đang được nhiều khách chú ý với không gian yên tĩnh , thoải mái. Đây là nơi để các cặp đôi tìm đến để dành cho nhau những giây phút lãng mạn."
+
+        },
+        {
+            "quanity": "Số lượng phòng - 2 phòng",
+            "star": 5,
+            "name":"Bún bò Huế",
+            "price": "35000 - 50000 vnd",
+            "date": "22/12/2017",
+            "category" : "Ẩm thực và đời sống",
+            "author" : "Tuấn Đặng",
+            "opentime" : "Mở cửa 8h - 23h30 ",
+            "service" : "Cung cấp thức ăn nhẹ , cà phê",
+            "email":  "tuandangminhttt.@gmail.com",
+            "phone": "09647376541",
+            "address" : "Tọa lạc trên trên 22/15 Nguyễn Văn Cừ , Quận 5 , CoupleHouse đang được nhiều khách chú ý với không gian yên tĩnh , thoải mái. Đây là nơi để các cặp đôi tìm đến để dành cho nhau những giây phút lãng mạn."
+
+        },
+        {
+            "quanity": "Số lượng phòng - 2 phòng",
+            "star": 5,
+            "name":"Bún bò Huế",
+            "price": "35000 - 50000 vnd",
+            "date": "22/12/2017",
+            "category" : "Ẩm thực và đời sống",
+            "author" : "Tuấn Đặng",
+            "opentime" : "Mở cửa 8h - 23h30 ",
+            "service" : "Cung cấp thức ăn nhẹ , cà phê",
+            "email":  "tuandangminhttt.@gmail.com",
+            "phone": "09647376541",
+            "address" : "Tọa lạc trên trên 22/15 Nguyễn Văn Cừ , Quận 5 , CoupleHouse đang được nhiều khách chú ý với không gian yên tĩnh , thoải mái. Đây là nơi để các cặp đôi tìm đến để dành cho nhau những giây phút lãng mạn."
+
+        }
+    ]
+}
