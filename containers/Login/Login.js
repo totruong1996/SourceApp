@@ -101,7 +101,7 @@ class LoginContainer extends React.Component {
                                 <Text style={styles.textButton}>Đăng nhập</Text>
                             </TouchableHighlight>
                             <TouchableHighlight  style={[styles.button,{backgroundColor: '#3d5b97', borderWidth: 0}]} >
-                                <Text style={styles.textButton}>Đăng nhập Faceook</Text>
+                                <Text style={styles.textButton}>Login Faceook</Text>
                             </TouchableHighlight>
                             <TouchableHighlight  style={[styles.button, {backgroundColor: '#dd4c39', borderWidth: 0}]} >
                                 <Text style={styles.textButton}>Đăng nhập Google</Text>

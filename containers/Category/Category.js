@@ -36,14 +36,18 @@ import CategoryHome from './CategoryHome';
 import  CategoryOthers from './CategoryOthers';
 import CategoryFood from './CategoryFood';
 import DetailCategory from '../DetailCategory/DetailCategory';
-import DetailHomeCategory from '../DetailCategory/DetailHomeCategory'
+import DetailHomeCategory from '../DetailCategory/DetailHomeCategory';
+import DetailFoodCategory from '../DetailCategory/DetailFoodCategory';
+import DetailTravelCategory from '../DetailCategory/DetailTravelCategory';
+
+
 class CategoryContainer extends React.Component {
 
   constructor(props) {
     super(props);
   }
-  handleViewDetail=(item)=>{
-    this.props.navigation.navigate('DetailHomeCategory', {typeCategory : 'homeCategory', 'item': item})
+  handleViewDetail=(item,nava)=>{
+    this.props.navigation.navigate(nava, {typeCategory : 'homeCategory', 'item': item})
   }
   render() {
     const { params } = this.props.navigation.state;
@@ -52,23 +56,19 @@ class CategoryContainer extends React.Component {
         params.typeCategory === 'travelCategory'){
       return <CategoryOthers
                 navigation={this.props.navigation}
-                handleViewDetail={()=>{
-                this.props.navigation.navigate('DetailCategory', {typeCategory : 'homeCategory'})
-                }}
+                handleViewDetail={(item)=>this.handleViewDetail(item, 'DetailTravelCategory')}
       /> ;
     }else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
     params.typeCategory === 'foodCategory'){
         return <CategoryFood
                 navigation={this.props.navigation}
-                handleViewDetail={this.handleViewDetail(item)}
+                handleViewDetail={(item)=>this.handleViewDetail(item,'DetailFoodCategory')}
            
       /> ;
     }else
         return <CategoryHome 
                 navigation={this.props.navigation}
-                handleViewDetail={(item)=>{
-                    this.props.navigation.navigate('DetailHomeCategory', {typeCategory : 'homeCategory', 'item': item})
-                }}
+                handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
                 />
   }
 }
@@ -77,6 +77,8 @@ const Category = StackNavigator(
     CategoryContainer: { screen: CategoryContainer },
     DetailCategory: { screen: DetailCategory },
     DetailHomeCategory : {screen: DetailHomeCategory},
+    DetailFoodCategory :{screen: DetailFoodCategory},
+    DetailTravelCategory:{screen: DetailTravelCategory},
   },
   {
     headerMode: 'none',    

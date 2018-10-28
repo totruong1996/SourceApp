@@ -82,7 +82,7 @@ class CategoryFood extends React.Component {
         let { listTravel } = this.props;
         console.log(listTravel)
         var list = listTravel.listTravel.map((item, index) => {
-            return <TouchableOpacity style={styles.containerItem} onPress={this.props.handleViewDetail} key={index}>
+            return <TouchableOpacity style={styles.containerItem} onPress={()=>this.props.handleViewDetail(item)} key={index}>
                 <Swiper style={styles.slideItem} showsButtons={false} dot={<View style={{
                     backgroundColor: "#ccc",
                     width: 8,
