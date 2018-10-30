@@ -82,7 +82,6 @@ class HomePageContent extends React.Component {
     _hideDateTimePicker = () => this.setState({isDateTimePickerVisible: false});
 
     _handleDatePicked = date => {
-        console.log("A date has been picked: ", date);
         this._hideDateTimePicker();
     };
 
@@ -219,7 +218,8 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('Category', {typeCategory: 'categoryOther'})
+                                this.props.showListHome()
+                                this.props.navigation.navigate('Category', {typeCategory: 'HCMHome'})
                             }}
                         >
                             <Image
@@ -239,7 +239,8 @@ class HomePageContent extends React.Component {
                                 justifyContent: 'center'
                             }}
                                     onPress={() => {
-                                        this.props.navigation.navigate('Category', {typeCategory: 'categoryOther'})
+                                        this.props.showListHome()
+                                        this.props.navigation.navigate('Category', {typeCategory: 'HCMHome'})
                                     }}
                             >
                                 <Text style={styles.textOtherCategory} uppercase={false}>Hồ Chí Minh</Text>
@@ -251,7 +252,8 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                this.props.showListHome()
+                                this.props.navigation.navigate('Category', {typeCategory: 'DLHome'})
                             }}
                         >
                             <Image
@@ -271,7 +273,8 @@ class HomePageContent extends React.Component {
                                 justifyContent: 'center'
                             }}
                                     onPress={() => {
-                                        this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                        this.props.showListHome()
+                                        this.props.navigation.navigate('Category', {typeCategory: 'DLHome'})
                                     }}
                             >
 
@@ -284,7 +287,8 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                this.props.showListHome()
+                                this.props.navigation.navigate('Category', {typeCategory: 'HLHome'})
                             }}
                         >
                             <Image
@@ -304,7 +308,8 @@ class HomePageContent extends React.Component {
                                 justifyContent: 'center'
                             }}
                                     onPress={() => {
-                                        this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                        this.props.showListHome()
+                                        this.props.navigation.navigate('Category', {typeCategory: 'HLHome'})
                                     }}
                             >
 
@@ -317,7 +322,8 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                this.props.showListHome()
+                                this.props.navigation.navigate('Category', {typeCategory: 'NTHome'})
                             }}
                         >
                             <Image
@@ -337,7 +343,8 @@ class HomePageContent extends React.Component {
                                 justifyContent: 'center'
                             }}
                                     onPress={() => {
-                                        this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                        this.props.showListHome()
+                                        this.props.navigation.navigate('Category', {typeCategory: 'NTHome'})
                                     }}
                             >
 
@@ -350,7 +357,8 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                this.props.showListHome()
+                                        this.props.navigation.navigate('Category', {typeCategory: 'HNHome'})
                             }}
                         >
                             <Image
@@ -370,7 +378,8 @@ class HomePageContent extends React.Component {
                                 justifyContent: 'center'
                             }}
                                     onPress={() => {
-                                        this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                        this.props.showListHome()
+                                        this.props.navigation.navigate('Category', {typeCategory: 'HNHome'})
                                     }}
                             >
 

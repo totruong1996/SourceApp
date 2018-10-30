@@ -78,10 +78,22 @@ class CategoryHome extends React.Component {
         }
         return list;
     }
+
     render() {
+        var dict = {
+            all: '',
+            hcm:'Hồ Chí Minh',
+            dl:"Đà Lạt",
+            nt:"Nha Trang",
+            hl:"Hạ Long",
+            hn: "Hà Nội"
+        }
+        var {type} = this.props;
+
         let {listHome} = this.props;
         console.log(listHome)
         var list = listHome.listHome.map((item, index) => {
+            if(item.address.indexOf(dict[type])!==-1){
             return <TouchableOpacity style={styles.containerItem} onPress={()=>
                 this.props.handleViewDetail(item)
             } 
@@ -111,21 +123,21 @@ class CategoryHome extends React.Component {
                     </View>
 
                     <View style={styles.bgBlur} />
-                    <Image style={styles.img} source={require("../../images/slide-home-col.jpg")} />
+                    <Image style={styles.img} source={item.images[0]} />
                 </View>
                 <View style={styles.imageSlide}>
                     <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
                         <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
                     </View>
                     <View style={styles.bgBlur} />
-                    <Image style={styles.img} source={require("../../images/slide-home-col-1.jpg")} />
+                    <Image style={styles.img} source={item.images[1]} />
                 </View>
                 <View style={styles.imageSlide}>
                     <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
                         <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
                     </View>
                     <View style={styles.bgBlur} />
-                    <Image style={styles.img} source={require("../../images/slide-home-col-2.jpg")} />
+                    <Image style={styles.img} source={item.images[2]} />
                 </View>
             </Swiper>
             <View style={styles.bottomItem}>
@@ -138,8 +150,9 @@ class CategoryHome extends React.Component {
                     </View>
                 </View>
             </View>
-        </TouchableOpacity>;
+        </TouchableOpacity>;}
         });
+
         return <ScrollView style={styles.container}>
             <View style={styles.viewSearch}>
                 <Item style={styles.containerSearchInput}>
@@ -166,7 +179,7 @@ class CategoryHome extends React.Component {
                     datePickerModeAndroid={"spinner"}
                 />
             </View>
-         {list}
+         { list}
         </ScrollView>;
     }
 }

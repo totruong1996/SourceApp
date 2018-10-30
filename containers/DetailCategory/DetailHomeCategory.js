@@ -48,7 +48,13 @@ class DetailCategory extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  _genStar = (star)=>{
+    list = []
+    for(let i = 0;i<star;i++){
+       list.push(<Icon name='ios-star' style={{ fontSize: 14, color: '#008489', }}  key={i}/>);
+    }
+    return list;
+}
   render() {
     const { item } = this.props.navigation.state.params;
     return <ScrollView style={styles.container} >
@@ -64,30 +70,26 @@ class DetailCategory extends React.Component {
           <Swiper style={styles.slideItem} showsButtons={false} dot={<View style={{ backgroundColor: "#ccc", width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3 }} />} activeDot={<View style={{ backgroundColor: "#fff", width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3 }} />}>
             <View style={styles.imageSlide}>
               <View style={styles.bgBlur} />
-              <Image style={styles.img} source={require("../../images/detail-category.jpg")} />
+              <Image style={styles.img} source={item.images[0]} />
             </View>
             <View style={styles.imageSlide}>
               <View style={styles.bgBlur} />
-              <Image style={styles.img} source={require("../../images/slide-home-col-1.jpg")} />
+              <Image style={styles.img} source={item.images[1]} />
             </View>
             <View style={styles.imageSlide}>
               <View style={styles.bgBlur} />
-              <Image style={styles.img} source={require("../../images/slide-home-col-2.jpg")} />
+              <Image style={styles.img} source={item.images[2]} />
             </View>
           </Swiper>
           <View style={styles.bottomItem}>
             <View style={styles.textItem}>
                 <Text style={styles.desText} uppercase>{item.quantity}</Text>
                 <View style={styles.rating}>
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
+                   {this._genStar(item.star)}
                 </View>
                 <Text style={styles.nameItem}>{item.name}</Text>
-                <Text style={{fontSize : 12, fontWeight : 'bold',fontFamily :Font.RobotoLight , marginTop: 5}} uppercase>Hồ Chí Minh
-                  <Text style={{fontFamily: Font.RobotoLight,fontSize: 12 , marginLeft: 10, fontWeight: 'normal', color: '#484848'}}> - Không gian mới cho các cặp tình nhân</Text>
+                <Text style={{fontSize : 12, fontWeight : 'bold',fontFamily :Font.RobotoLight , marginTop: 5}} uppercase>{item.address}
+                 
                 </Text>
                 <Text style={styles.priceItem}>{item.price}</Text>
                 <View style={{marginTop: 5, flexDirection: 'row', alignItems: 'center', marginBottom: 5}}>
@@ -145,8 +147,7 @@ class DetailCategory extends React.Component {
           <View style={styles.bottomItem}>
             <Text style={{fontSize : 12, fontWeight : 'bold',fontFamily :Font.RobotoLight , marginTop: 5}} uppercase>Thông tin chi tiết
               <Text style={{fontFamily: Font.RobotoLight,fontSize: 14 , lineHeight: 24, color :'#999', marginLeft: 10, fontWeight: 'normal', color: '#484848'}}> 
-              : Tọa lạc trên trên 22/15 Nguyễn Văn Cừ , Quận 5 , CoupleHouse đang được nhiều khách chú ý với không gian yên tĩnh , thoải mái. 
-              Đây là nơi để các cặp đôi tìm đến để dành cho nhau những giây phút lãng mạn.
+              : {item.detail}
               
               </Text>
             </Text>

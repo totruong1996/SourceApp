@@ -65,11 +65,53 @@ class CategoryContainer extends React.Component {
                 handleViewDetail={(item)=>this.handleViewDetail(item,'DetailFoodCategory')}
            
       /> ;
-    }else
+    }else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+    params.typeCategory === 'homeCategory'){
         return <CategoryHome 
                 navigation={this.props.navigation}
                 handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
+                type='all'
                 />
+        }
+    else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HCMHome'){
+      return <CategoryHome 
+      navigation={this.props.navigation}
+      handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
+      type='hcm'
+      />
+    }
+    else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+    params.typeCategory === 'DLHome'){
+    return <CategoryHome 
+    navigation={this.props.navigation}
+    handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
+    type='dl'
+    />
+      }
+      else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NTHome'){
+      return <CategoryHome 
+      navigation={this.props.navigation}
+      handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
+      type='nt'
+      />
+    }
+    else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+    params.typeCategory === 'HNHome'){
+    return <CategoryHome 
+    navigation={this.props.navigation}
+    handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
+    type='hn'
+    />
+  }
+  else {
+  return <CategoryHome 
+  navigation={this.props.navigation}
+  handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
+  type='hl'
+  />
+}
   }
 }
 const Category = StackNavigator(
