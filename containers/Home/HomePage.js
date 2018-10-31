@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from "react";
-import{bindActionCreators} from 'redux';
-import {connect} from 'react-redux'
+import React, { Component, PropTypes } from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 import ActionCreators from '../../redux/actions'
 import {
     Platform,
@@ -19,8 +19,8 @@ import {
 import DateTimePicker from "react-native-modal-datetime-picker";
 // import { Card, List, ListItem,  } from "react-native-elements";
 import Swiper from "react-native-swiper";
-import {StackNavigator, TabNavigator} from "react-navigation";
-import {Font} from "../utils/Font";
+import { StackNavigator, TabNavigator } from "react-navigation";
+import { Font } from "../utils/Font";
 import {
     Container,
     Content,
@@ -36,7 +36,9 @@ import {
     Body
 } from "native-base";
 import Category from '../Category/Category';
-
+import DetailHomeCategory from '../DetailCategory/DetailHomeCategory';
+import DetailFoodCategory from '../DetailCategory/DetailFoodCategory';
+import DetailTravelCategory from '../DetailCategory/DetailTravelCategory';
 
 class HomeContent extends React.Component {
     render() {
@@ -57,11 +59,11 @@ class HomeContent extends React.Component {
                         style={styles.containerButtonCard}
                     >
                         <Body>
-                        <Button transparent style={{justifyContent: 'center', alignItems: 'center'}}
+                            <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                 onPress={this.props.showCategoryHome}
-                        >
-                            <Text style={styles.titleCard} uppercase={false}>Nhà ở</Text>
-                        </Button>
+                            >
+                                <Text style={styles.titleCard} uppercase={false}>Nhà ở</Text>
+                            </Button>
                         </Body>
                     </CardItem>
                 </Card>
@@ -74,26 +76,171 @@ class HomePageContent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {showContent: 'homeContent', isDateTimePickerVisible: false}
+        this.state = { showContent: 'homeContent', isDateTimePickerVisible: false }
     }
 
-    _showDateTimePicker = () => this.setState({isDateTimePickerVisible: true});
+    _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 
-    _hideDateTimePicker = () => this.setState({isDateTimePickerVisible: false});
+    _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
     _handleDatePicked = date => {
         this._hideDateTimePicker();
     };
+    componentWillMount() {
 
+    }
+    _genStar = (star) => {
+        list = []
+        for (let i = 0; i < star; i++) {
+            list.push(<Icon name='ios-star' style={{ fontSize: 14, color: '#008489', }} key={i} />);
+        }
+        return list;
+    }
     render() {
-        const {showContent} = this.state;
+        const { showContent } = this.state;
+        const { listFood, listHome, listTravel } = this.props;
+        var home = listHome.listHome.map((item, index) => {
+            if (index < 5) {
+                return <Card transparent style={styles.cardContainerOtherCategory} key={index}>
+                    <CardItem cardBody style={{ position: 'relative' }}>
+                        <View style={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            zIndex: 5,
+                            backgroundColor: "#000",
+                            opacity: 0.4
+                        }} />
+
+
+                        <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
+                            <Icon name='md-heart-outline' style={{ fontSize: 22, color: '#fff', }} />
+                        </View>
+                        <Image
+                            source={item.images[0]}
+                            style={styles.imageCardOtherCategory}
+                        />
+                    </CardItem>
+                    <CardItem
+                        style={[styles.containerButtonCard]}
+                    >
+                        <Body>
+                            <TouchableOpacity transparent style={{ paddingTop: 5, paddingBottom: 5 }}
+                                onPress={() => {
+                                    this.props.navigation.navigate('DetailHomeCategory', {typeCategory : 'homeCategory', 'item': item})
+                                }}
+                            >
+                                <Text style={styles.locationItemCard} uppercase>{item.quantity}</Text>
+                                <Text style={styles.textOtherCategory} uppercase={false}>{item.name}</Text>
+                                <Text style={styles.priceCardItem} uppercase={false}>{item.price}</Text>
+                                <View style={styles.rating}>
+                                    {this._genStar(item.star)}
+                                </View>
+                            </TouchableOpacity>
+                        </Body>
+                    </CardItem>
+                </Card>
+            }
+
+        })
+        food = listFood.listFood.map((item, index) => {
+            if (index < 5) {
+                return <Card transparent style={styles.cardContainerOtherCategory} key={index}>
+                    <CardItem cardBody>
+                        <View style={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            zIndex: 5,
+                            backgroundColor: "#000",
+                            opacity: 0.4
+                        }} />
+
+
+                        <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
+                            <Icon name='ios-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                        </View>
+                        <Image
+                            source={item.images[0]}
+                            style={styles.imageCardOtherCategory}
+                        />
+                    </CardItem>
+                    <CardItem
+                        style={[styles.containerButtonCard]}
+                    >
+                        <Body>
+                            <TouchableOpacity transparent style={{ paddingTop: 5, paddingBottom: 5 }}
+                                onPress={() => {
+                                    this.props.navigation.navigate('DetailFoodCategory', {typeCategory : 'homeCategory', 'item': item})
+                                }}
+                            >
+                                <Text style={styles.locationItemCard} uppercase>{item.status}</Text>
+                                <Text style={styles.textOtherCategory} uppercase={false}>{item.name} </Text>
+                                <Text style={styles.priceCardItem} uppercase={false}>{item.price}</Text>
+                                <View style={styles.rating}>
+                                    {this._genStar(item.star)}
+                                </View>
+                            </TouchableOpacity>
+                        </Body>
+                    </CardItem>
+                </Card>
+            }
+        })
+        travel = listTravel.listTravel.map((item, index) => {
+            if (index < 5) {
+                return <Card transparent style={styles.cardContainerOtherCategory} key={index}>
+                    <CardItem cardBody>
+                        <View style={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            left: 0,
+                            bottom: 0,
+                            zIndex: 5,
+                            backgroundColor: "#000",
+                            opacity: 0.4
+                        }} />
+                        <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
+                            <Icon name='ios-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                        </View>
+                        <Image
+                            source={item.images[0]}
+                            style={styles.imageCardOtherCategory}
+                        />
+                    </CardItem>
+                    <CardItem
+                        style={[styles.containerButtonCard]}
+                    >
+                        <Body>
+                            <TouchableOpacity transparent style={{ paddingTop: 5, paddingBottom: 5 }}
+                                onPress={() => {
+                                    this.props.navigation.navigate('DetailTravelCategory', {typeCategory : 'homeCategory', 'item': item})
+                                }}
+                            >
+                                <Text style={styles.locationItemCard} uppercase>{item.status}</Text>
+                                <Text style={styles.textOtherCategory} uppercase={false}>{item.name} </Text>
+                                <Text style={styles.priceCardItem} uppercase={false}>{item.price}</Text>
+                                <View style={styles.rating}>
+                                    {this._genStar(item.star)}
+                                </View>
+                            </TouchableOpacity>
+                        </Body>
+                    </CardItem>
+                </Card>
+
+            }
+        })
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.viewSearch}>
                     <Item
                         style={styles.containerSearchInput}
                     >
-                        <Icon name="ios-search" style={{marginLeft: 10, color: "#999"}}/>
+                        <Icon name="ios-search" style={{ marginLeft: 10, color: "#999" }} />
                         <Input
                             placeholder="Hồ Chí Minh..."
                             placeholderTextColor="#999"
@@ -146,14 +293,14 @@ class HomePageContent extends React.Component {
                             style={styles.containerButtonCard}
                         >
                             <Body>
-                            <Button transparent style={{justifyContent: 'center', alignItems: 'center'}}
+                                <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                     onPress={() => {
                                         this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
                                     }}
-                            >
-                                <Text style={styles.titleCard} uppercase={false}>Nhà ở</Text>
-                            </Button>
+                                >
+                                    <Text style={styles.titleCard} uppercase={false}>Nhà ở</Text>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -168,14 +315,14 @@ class HomePageContent extends React.Component {
                             style={styles.containerButtonCard}
                         >
                             <Body>
-                            <Button transparent style={{justifyContent: 'center', alignItems: 'center'}}
+                                <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                     onPress={() => {
                                         this.props.showListTravel()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'travelCategory'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' })
                                     }}
-                            >
-                                <Text style={styles.titleCard} uppercase={false}>Trải nghiệm</Text>
-                            </Button>
+                                >
+                                    <Text style={styles.titleCard} uppercase={false}>Trải nghiệm</Text>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -190,14 +337,14 @@ class HomePageContent extends React.Component {
                             style={styles.containerButtonCard}
                         >
                             <Body>
-                            <Button transparent style={{justifyContent: 'center', alignItems: 'center'}}
+                                <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                     onPress={() => {
                                         this.props.showListFood()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'foodCategory'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' })
                                     }}
-                            >
-                                <Text style={styles.titleCard} uppercase={false}>Ăn uống</Text>
-                            </Button>
+                                >
+                                    <Text style={styles.titleCard} uppercase={false}>Ăn uống</Text>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -205,9 +352,13 @@ class HomePageContent extends React.Component {
 
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Địa điểm nổi bật</Text>
-                    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight}}>Xem tất cả</Text>
-                        <Icon name='ios-arrow-forward-outline' style={{fontSize: 14, color: '#484848', marginLeft: 5}}/>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} 
+                    onPress={() => {
+                        this.props.showListHome()
+                        this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
+                    }}>
+                        <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
+                        <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
                     </TouchableOpacity>
                 </View>
                 <ScrollView
@@ -219,7 +370,7 @@ class HomePageContent extends React.Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.showListHome()
-                                this.props.navigation.navigate('Category', {typeCategory: 'HCMHome'})
+                                this.props.navigation.navigate('Category', { typeCategory: 'HCMHome' })
                             }}
                         >
                             <Image
@@ -230,22 +381,22 @@ class HomePageContent extends React.Component {
                         <CardItem
                             style={[styles.containerButtonCard]}
                         >
-                            <Body style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                            <Button transparent style={{
-                                paddingTop: 5,
-                                flexDirection: 'row',
-                                paddingBottom: 5,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            <Body style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                <Button transparent style={{
+                                    paddingTop: 5,
+                                    flexDirection: 'row',
+                                    paddingBottom: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
                                     onPress={() => {
                                         this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'HCMHome'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'HCMHome' })
                                     }}
-                            >
-                                <Text style={styles.textOtherCategory} uppercase={false}>Hồ Chí Minh</Text>
+                                >
+                                    <Text style={styles.textOtherCategory} uppercase={false}>Hồ Chí Minh</Text>
 
-                            </Button>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -253,7 +404,7 @@ class HomePageContent extends React.Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.showListHome()
-                                this.props.navigation.navigate('Category', {typeCategory: 'DLHome'})
+                                this.props.navigation.navigate('Category', { typeCategory: 'DLHome' })
                             }}
                         >
                             <Image
@@ -264,23 +415,21 @@ class HomePageContent extends React.Component {
                         <CardItem
                             style={[styles.containerButtonCard]}
                         >
-                            <Body style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                            <Button transparent style={{
-                                paddingTop: 5,
-                                flexDirection: 'row',
-                                paddingBottom: 5,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            <Body style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                <Button transparent style={{
+                                    paddingTop: 5,
+                                    flexDirection: 'row',
+                                    paddingBottom: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
                                     onPress={() => {
                                         this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'DLHome'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'DLHome' })
                                     }}
-                            >
-
-                                <Text style={styles.textOtherCategory} uppercase={false}>Đà Lạt</Text>
-
-                            </Button>
+                                >
+                                    <Text style={styles.textOtherCategory} uppercase={false}>Đà Lạt</Text>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -288,7 +437,7 @@ class HomePageContent extends React.Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.showListHome()
-                                this.props.navigation.navigate('Category', {typeCategory: 'HLHome'})
+                                this.props.navigation.navigate('Category', { typeCategory: 'HLHome' })
                             }}
                         >
                             <Image
@@ -299,23 +448,22 @@ class HomePageContent extends React.Component {
                         <CardItem
                             style={[styles.containerButtonCard]}
                         >
-                            <Body style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                            <Button transparent style={{
-                                paddingTop: 5,
-                                flexDirection: 'row',
-                                paddingBottom: 5,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            <Body style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                <Button transparent style={{
+                                    paddingTop: 5,
+                                    flexDirection: 'row',
+                                    paddingBottom: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
                                     onPress={() => {
                                         this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'HLHome'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'HLHome' })
                                     }}
-                            >
+                                >
+                                    <Text style={styles.textOtherCategory} uppercase={false}>Hạ Long</Text>
 
-                                <Text style={styles.textOtherCategory} uppercase={false}>Hạ Long</Text>
-
-                            </Button>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -323,7 +471,7 @@ class HomePageContent extends React.Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.showListHome()
-                                this.props.navigation.navigate('Category', {typeCategory: 'NTHome'})
+                                this.props.navigation.navigate('Category', { typeCategory: 'NTHome' })
                             }}
                         >
                             <Image
@@ -334,23 +482,21 @@ class HomePageContent extends React.Component {
                         <CardItem
                             style={[styles.containerButtonCard]}
                         >
-                            <Body style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                            <Button transparent style={{
-                                paddingTop: 5,
-                                flexDirection: 'row',
-                                paddingBottom: 5,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            <Body style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                <Button transparent style={{
+                                    paddingTop: 5,
+                                    flexDirection: 'row',
+                                    paddingBottom: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
                                     onPress={() => {
                                         this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'NTHome'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'NTHome' })
                                     }}
-                            >
-
-                                <Text style={styles.textOtherCategory} uppercase={false}>Nha Trang</Text>
-
-                            </Button>
+                                >
+                                    <Text style={styles.textOtherCategory} uppercase={false}>Nha Trang</Text>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
@@ -358,7 +504,7 @@ class HomePageContent extends React.Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'HNHome'})
+                                this.props.navigation.navigate('Category', { typeCategory: 'HNHome' })
                             }}
                         >
                             <Image
@@ -369,34 +515,34 @@ class HomePageContent extends React.Component {
                         <CardItem
                             style={[styles.containerButtonCard]}
                         >
-                            <Body style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                            <Button transparent style={{
-                                paddingTop: 5,
-                                flexDirection: 'row',
-                                paddingBottom: 5,
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            <Body style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                <Button transparent style={{
+                                    paddingTop: 5,
+                                    flexDirection: 'row',
+                                    paddingBottom: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
                                     onPress={() => {
                                         this.props.showListHome()
-                                        this.props.navigation.navigate('Category', {typeCategory: 'HNHome'})
+                                        this.props.navigation.navigate('Category', { typeCategory: 'HNHome' })
                                     }}
-                            >
-
-                                <Text style={styles.textOtherCategory} uppercase={false}>Hà Nội</Text>
-
-                            </Button>
+                                >
+                                    <Text style={styles.textOtherCategory} uppercase={false}>Hà Nội</Text>
+                                </Button>
                             </Body>
                         </CardItem>
                     </Card>
-
                 </ScrollView>
-
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Nhà ở</Text>
-                    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight}}>Xem tất cả</Text>
-                        <Icon name='ios-arrow-forward-outline' style={{fontSize: 14, color: '#484848', marginLeft: 5}}/>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}    
+                    onPress={() => {
+                        this.props.showListHome()
+                        this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
+                    }}>
+                        <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
+                        <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
 
                     </TouchableOpacity>
                 </View>
@@ -405,284 +551,17 @@ class HomePageContent extends React.Component {
                     style={styles.containerCategory}
                     showsHorizontalScrollIndicator={false}
                 >
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody style={{position: 'relative'}}>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/home-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>LiveShow Âm Nhạc</Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody style={{position: 'relative'}}>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/home-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>LiveShow Âm Nhạc</Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody style={{position: 'relative'}}>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/home-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>LiveShow Âm Nhạc</Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody style={{position: 'relative'}}>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/home-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>LiveShow Âm Nhạc</Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody style={{position: 'relative'}}>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/home-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>LiveShow Âm Nhạc</Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody style={{position: 'relative'}}>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/home-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>LiveShow Âm Nhạc</Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-
+                    {home}
                 </ScrollView>
-
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Khám phá</Text>
-                    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight}}>Xem tất cả</Text>
-                        <Icon name='ios-arrow-forward-outline' style={{fontSize: 14, color: '#484848', marginLeft: 5}}/>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}  
+                    onPress={() => {
+                        this.props.showListTravel()
+                        this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' })
+                    }}>
+                        <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
+                        <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
                     </TouchableOpacity>
                 </View>
                 <ScrollView
@@ -690,237 +569,17 @@ class HomePageContent extends React.Component {
                     style={styles.containerCategory}
                     showsHorizontalScrollIndicator={false}
                 >
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='ios-heart' style={{fontSize: 22, color: 'rgb(255, 90, 95)'}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/experience-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Du lịch - Hạ Long</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Khám phá đảo Hạ Long </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/experience-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Du lịch - Hạ Long</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Khám phá đảo Hạ Long </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/experience-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Du lịch - Hạ Long</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Khám phá đảo Hạ Long </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/experience-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Du lịch - Hạ Long</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Khám phá đảo Hạ Long </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff',}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/experience-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Du lịch - Hạ Long</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Khám phá đảo Hạ Long </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-
+                    {travel}
                 </ScrollView>
-
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Ẩm thực</Text>
-                    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight}}>Xem tất cả</Text>
-                        <Icon name='ios-arrow-forward-outline' style={{fontSize: 14, color: '#484848', marginLeft: 5}}/>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                    onPress={() => {
+                        this.props.showListFood()
+                        this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' })
+                    }}>
+                        <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
+                        <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
                     </TouchableOpacity>
                 </View>
                 <ScrollView
@@ -928,232 +587,7 @@ class HomePageContent extends React.Component {
                     style={styles.containerCategory}
                     showsHorizontalScrollIndicator={false}
                 >
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='ios-heart' style={{fontSize: 22, color: 'rgb(255, 90, 95)'}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/food-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Ẩm thực - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Buffet Bùi Viện </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff'}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/food-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Ẩm thực - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Buffet Bùi Viện </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff'}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/food-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Ẩm thực - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Buffet Bùi Viện </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff'}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/food-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Ẩm thực - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Buffet Bùi Viện </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                    <Card transparent style={styles.cardContainerOtherCategory}>
-                        <CardItem cardBody>
-                            <View style={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                left: 0,
-                                bottom: 0,
-                                zIndex: 5,
-                                backgroundColor: "#000",
-                                opacity: 0.4
-                            }}/>
-
-
-                            <View style={{position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10}}>
-                                <Icon name='md-heart-outline' style={{fontSize: 22, color: '#fff'}}/>
-                            </View>
-                            <Image
-                                source={require("../../images/food-category.jpg")}
-                                style={styles.imageCardOtherCategory}
-                            />
-                        </CardItem>
-                        <CardItem
-                            style={[styles.containerButtonCard]}
-                        >
-                            <Body>
-                            <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5}}
-                                              onPress={() => {
-                                                  this.props.navigation.navigate('Category', {typeCategory: 'homeCategory'})
-                                              }}
-                            >
-                                <Text style={styles.locationItemCard} uppercase>Ẩm thực - Hồ Chí Minh</Text>
-                                <Text style={styles.textOtherCategory} uppercase={false}>Buffet Bùi Viện </Text>
-                                <Text style={styles.priceCardItem} uppercase={false}>300.000đ/Người</Text>
-                                <View style={styles.rating}>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                    <Icon name='ios-star' style={{fontSize: 14, color: '#008489',}}/>
-                                </View>
-                            </TouchableOpacity>
-                            </Body>
-                        </CardItem>
-                    </Card>
-
+                    {food}
                 </ScrollView>
 
 
@@ -1161,17 +595,25 @@ class HomePageContent extends React.Component {
         );
     }
 }
-const mapStateToProps = state =>{
-    return {loggedInStatus: state.loggedInStatus}
+const mapStateToProps = state => {
+    return {
+        loggedInStatus: state.loggedInStatus,
+        listFood: state.listFood,
+        listHome: state.listHome,
+        listTravel: state.listTravel
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(ActionCreators, dispatch);
-    }
+}
 const HomePage = StackNavigator(
     {
-        HomePageContent: {screen: connect(mapStateToProps,mapDispatchToProps)(HomePageContent)},
-        Category: {screen: Category},
+        HomePageContent: { screen: connect(mapStateToProps, mapDispatchToProps)(HomePageContent) },
+        Category: { screen: Category },
+        DetailHomeCategory:{screen:DetailHomeCategory},
+        DetailFoodCategory:{screen:DetailFoodCategory},
+        DetailTravelCategory:{screen:DetailTravelCategory},
     },
     {
         headerMode: 'none',
@@ -1272,6 +714,7 @@ const styles = StyleSheet.create({
         color: '#484848',
         marginBottom: 5,
         marginTop: 5,
+        color: 'rgb(8, 173, 109)',
     },
     priceCardItem: {
         fontFamily: Font.RobotoLight,

@@ -57,7 +57,6 @@ class LoginContainer extends React.Component {
                 image: require("../../images/splash_3.jpg")
             },
         ];
-        console.log(loggedInState)
         return (
             <View style={styles.container}>
                 <View style={styles.backgroundLayer}/>
@@ -94,6 +93,9 @@ class LoginContainer extends React.Component {
                         <View style={styles.buttonLogin}>
                             <TouchableHighlight  style={[styles.button]}
                                 onPress={()=>{
+                                    this.props.showListHome()
+                                    this.props.showListTravel()
+                                    this.props.showListFood()
                                     this.props.logIn(this.state.email, this.state.password)
                                            
                                 }}
