@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
-    Text,
-    View,
     Image,
 } from 'react-native';
-import Swiper from 'react-native-swiper';
 import {
-    StackNavigator,
     TabNavigator,
 } from 'react-navigation';
 import  ProfilePage from '../Profile/Profile';
@@ -18,7 +13,7 @@ import SaveContainer from '../Saved/SaveContainer';
 import NotificationContainer from '../Notification/NotificationContainer';
 import TripContainer from '../Trip/TripContainer';
 
-class HomeContainer extends React.Component {
+class HomeContainer extends Component {
 
     static navigationOptions = {
         tabBarLabel: 'Trang chủ',
@@ -34,7 +29,7 @@ class HomeContainer extends React.Component {
     }
 }
 
-class Saved extends React.Component {
+class Saved extends Component {
     static navigationOptions = {
         tabBarLabel: 'Đã lưu',
         tabBarIcon: ({ tintColor }) => (
@@ -50,7 +45,7 @@ class Saved extends React.Component {
     }
 }
 
-class Trip extends React.Component {
+class Trip extends Component {
     static navigationOptions = {
         tabBarLabel: 'Chuyến đi',
         tabBarIcon: ({ tintColor }) => (
@@ -65,7 +60,7 @@ class Trip extends React.Component {
     }
 }
 
-class Notification extends React.Component {
+class Notification extends Component {
     static navigationOptions = {
         tabBarLabel: 'Thông báo',
         tabBarIcon: ({ tintColor }) => (
@@ -80,7 +75,7 @@ class Notification extends React.Component {
     }
 }
 
-class Profile extends React.Component {
+class Profile extends Component {
     static navigationOptions = {
         tabBarLabel: 'Tài khoản',
         tabBarIcon: ({ tintColor }) => (

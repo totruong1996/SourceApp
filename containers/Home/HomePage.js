@@ -1,37 +1,24 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import ActionCreators from '../../redux/actions'
 import {
-    Platform,
     StyleSheet,
-    // Text,
     View,
     Image,
-    // Button,
-    Animated,
-    Easing,
     TouchableOpacity,
-    ListView,
     ScrollView,
-    TextInput
 } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
-// import { Card, List, ListItem,  } from "react-native-elements";
-import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
+import { StackNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 import {
-    Container,
-    Content,
-    Header,
     Item,
     Input,
     Icon,
     Button,
     Card,
     CardItem,
-    Thumbnail,
     Text,
     Body
 } from "native-base";
@@ -40,7 +27,7 @@ import DetailHomeCategory from '../DetailCategory/DetailHomeCategory';
 import DetailFoodCategory from '../DetailCategory/DetailFoodCategory';
 import DetailTravelCategory from '../DetailCategory/DetailTravelCategory';
 
-class HomeContent extends React.Component {
+class HomeContent extends Component {
     render() {
         return (
             <ScrollView

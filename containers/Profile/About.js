@@ -5,10 +5,9 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { Button } from "react-native-elements";
 import { Font } from "../utils/Font";
 
-class InviteFriends extends Component {
+class About extends Component {
   static navigationOptions = {
     title: "Mời bạn bè của bạn"
   };
@@ -23,28 +22,24 @@ class InviteFriends extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.partNotice}>
-          <Text style={styles.title}>Nhận Voucher hấp dẫn</Text>
-          <Text style={styles.subTitle}>
-            Mời bạn bè của bạn bằng đường link ở dưới , bạn sẽ nhận được Voucher trị giá
-            <Text style={[styles.subTitle, {fontWeight: 'bold'} ]}> 500.000Đ</Text>  
-            <Text style={styles.subTitle}> vào tài khoản của bạn.</Text>
+          <Text style={styles.title}>About Kids Team:</Text>
+          <Text style={styles.subTitle}>* Tien Truong</Text>
+          <Text style={styles.subTitle}>* Chuong Nguyen</Text>
+          <Text style={styles.title}></Text>
+
+          <Text style={styles.subTitleThank}>
+            Thanks you for using Travel App!
            </Text>
-           <Text style={styles.subTitle}>Người bạn của bạn sẽ cũng nhận được một phiếu Voucher trị giá 
-            <Text style={[styles.subTitle, {fontWeight: 'bold'} ]}> 300.000Đ </Text>  </Text> 
+         
         </View>
         <View style={{marginTop : 20 , alignItems : 'center', justifyContent : 'center'}} >
-          <Button
-            buttonStyle={{backgroundColor: '#3b536b', borderRadius: 10 , width: 150}}
-            textStyle={{textAlign: 'center'}}
-            title={'Chia sẻ ngay'}
-          />
         </View>
       </ScrollView>
     );
   }
 }
 
-export default InviteFriends;
+export default About;
 
 const styles = StyleSheet.create({
   container: {
@@ -72,5 +67,10 @@ const styles = StyleSheet.create({
   subTitle: {
     fontFamily: Font.RobotoLight,
     fontSize: 12,
+  },
+  subTitleThank: {
+    fontFamily: Font.RobotoLight,
+    fontSize: 18,
+    color:'green'
   }
 });

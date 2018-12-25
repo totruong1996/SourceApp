@@ -1,18 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  ListView,
   ScrollView,
   Image
 } from "react-native";
 import { Button, FormInput, FormLabel, Icon } from "react-native-elements";
-import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
-import { Font } from "../utils/Font";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 class ChangeProfile extends Component {

@@ -1,40 +1,24 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
-  // Text,
   View,
   Image,
-  // Button,
-  Animated,
-  Easing,
   TouchableOpacity,
-  ListView,
   ScrollView,
-  TextInput,
   Dimensions
 } from "react-native";
-
-// import { Card, List, ListItem,  } from "react-native-elements";
 import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 import {
-  Container,
-  Content,
-  Header,
   Item,
   Input,
   Icon,
   Button,
   Card,
   CardItem,
-  Thumbnail,
   Text,
   Body,
-  Footer, FooterTab,
 } from "native-base";
-import MapView from 'react-native-maps';
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;

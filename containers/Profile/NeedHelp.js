@@ -1,18 +1,12 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  Image,
-  ListView,
   ScrollView
 } from "react-native";
-import { Card, List, ListItem } from "react-native-elements";
-import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
+import {List, ListItem } from "react-native-elements";
 import { Font } from "../utils/Font";
-import Payment from './Payment';
 
 
 

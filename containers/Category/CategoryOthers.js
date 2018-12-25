@@ -1,46 +1,27 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ActionCreators from '../../redux/actions'
 import {
-    Platform,
     StyleSheet,
-    // Text,
     View,
     Image,
-    // Button,
-    Animated,
-    Easing,
     TouchableOpacity,
-    ListView,
     ScrollView,
-    TextInput,
-    Modal,
-    TouchableHighlight,
     PanResponder
 } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
-
-// import { Card, List, ListItem,  } from "react-native-elements";
 import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 import {
-    Container,
-    Content,
-    Header,
     Item,
     Input,
     Icon,
     Button,
-    Card,
-    CardItem,
-    Thumbnail,
     Text,
-    Body
 } from "native-base";
 
-class CategoryFood extends React.Component {
+class CategoryFood extends Component {
 
     constructor(props) {
         super(props);

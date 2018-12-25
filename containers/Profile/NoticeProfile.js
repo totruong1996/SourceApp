@@ -1,20 +1,15 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   FlatList,
   ScrollView,
   Switch
 } from "react-native";
-import { Card, List, ListItem } from "react-native-elements";
-import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 
-class NoticeProfile extends React.Component {
+class NoticeProfile extends Component {
   static navigationOptions = {
     title: "Cài đặt thông báo"
   };

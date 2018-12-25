@@ -3,16 +3,13 @@ import {connect} from 'react-redux';
 import{bindActionCreators} from 'redux';
 import ActionCreators from '../../redux/actions'
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     Image,
     TouchableHighlight ,
-    Button
 } from 'react-native';
-import {Container, Header, Content, Item, Input,Icon} from 'native-base';
-import Swiper from 'react-native-swiper';
+import { Item, Input,Icon} from 'native-base';
 import {
     StackNavigator,
 } from 'react-navigation';
@@ -22,7 +19,7 @@ import {Font} from '../utils/Font.js';
 import { loggedInStatus } from '../../redux/reducers/loggedOut';
 
 
-class LoginContainer extends React.Component {
+class LoginContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -87,7 +84,7 @@ class LoginContainer extends React.Component {
                         </View>
                         <View style={styles.inputForm}>
                             <Item style={{borderBottomColor :'#fff'}}>
-                                <Input style={styles.input} placeholder="Mật khẩu" placeholderTextColor={'#fff'} onChangeText ={this.handlePasswordChange}/>
+                                <Input secureTextEntry={true} style={styles.input} placeholder="Mật khẩu" placeholderTextColor={'#fff'} onChangeText ={this.handlePasswordChange}/>
                             </Item>
                         </View>
                         <View style={styles.buttonLogin}>

@@ -1,20 +1,16 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
   Image,
-  Button,
   Animated,
   Easing,
   TouchableOpacity,
-  ListView,
   ScrollView
 } from "react-native";
-import { Card, List, ListItem } from "react-native-elements";
-import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
+import {  List, ListItem } from "react-native-elements";
+import { StackNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 import NoticeProfile from './NoticeProfile';
 import InviteFriends from './InviteFriends';
@@ -22,6 +18,7 @@ import Payment from './Payment';
 import NeedHelp from './NeedHelp';
 import Feedback from './Feedback';
 import ChangeProfile from './ChangeProfile';
+import About from './About';
 
 
 
@@ -61,12 +58,12 @@ class Profile extends React.Component {
       {
         name: "Về chúng tôi",
         iconImage: require("../../images/icon-feedback.png"),
-        path : "InviteFriends",
+        path : "About",
       },
       {
         name: "Đăng xuất",
         iconImage: require("../../images/icon-setting.png"),
-        path : "InviteFriends",
+        path : "SplashScreen",
       },
     ];
     this.state = {
@@ -147,6 +144,7 @@ const ProfilePage = StackNavigator(
     Payment: { screen: Payment },
     NeedHelp: { screen: NeedHelp },
     Feedback: { screen: Feedback },
+    About : {screen: About},
   },
   {
     navigationOptions: {

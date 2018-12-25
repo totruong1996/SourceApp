@@ -3,27 +3,15 @@ import {
     StyleSheet,
     View,
     ScrollView,
-    TouchableHighlight,
     TouchableOpacity,
     Image,
 
 
 } from "react-native";
-import Swiper from "react-native-swiper";
 import {Font} from "../utils/Font";
 import {
-    Container,
-    Content,
-    Header,
-    Item,
-    Input,
     Icon,
-    Button,
-    Card,
-    CardItem,
-    Thumbnail,
     Text,
-    Body
 } from "native-base";
 
 export default class TripContainer extends Component {

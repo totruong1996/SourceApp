@@ -1,46 +1,27 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ActionCreators from '../../redux/actions'
 import {
-    Platform,
     StyleSheet,
-    // Text,
     View,
     Image,
-    // Button,
-    Animated,
-    Easing,
     TouchableOpacity,
-    ListView,
     ScrollView,
-    TextInput,
-    Modal,
-    TouchableHighlight,
     PanResponder
 } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
-
-// import { Card, List, ListItem,  } from "react-native-elements";
 import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 import {
-    Container,
-    Content,
-    Header,
     Item,
     Input,
     Icon,
     Button,
-    Card,
-    CardItem,
-    Thumbnail,
     Text,
-    Body
 } from "native-base";
 
-class CategoryHome extends React.Component {
+class CategoryHome extends Component {
 
     constructor(props) {
         super(props);
@@ -199,12 +180,6 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingLeft: 15,
         backgroundColor: "#fff",
-        // position : 'absolute',
-        // top: 0,
-        // left: 0,
-        // right : 0,
-        // bottom: 0,
-        // zIndex : 2
     },
     viewSearch: {
         marginTop: 20,

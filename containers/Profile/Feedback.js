@@ -1,23 +1,14 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
-  //   Text,
   View,
-  ListView,
   ScrollView
 } from "react-native";
 import {
   Button,
-  Text,
   FormInput,
   FormLabel,
-  CheckBox,
-  SearchBar
 } from "react-native-elements";
-import Swiper from "react-native-swiper";
-import { StackNavigator, TabNavigator } from "react-navigation";
-import { Font } from "../utils/Font";
 
 class Feedback extends Component {
   static navigationOptions = {

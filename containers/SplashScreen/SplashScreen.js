@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
@@ -11,8 +10,6 @@ import Swiper from 'react-native-swiper';
 import {
     StackNavigator,
 } from 'react-navigation';
-
-import Home from '../Home/Home';
 import Login from '../Login/Login';
 import {Font} from '../utils/Font.js';
 
@@ -85,15 +82,6 @@ class SplashScreen extends Component {
 }
 
 
-/*const IntroScreen = StackNavigator(
-    {
-        SplashScreen: {screen: SplashScreen},
-        Home: {screen: Home},
-    },
-    {
-        headerMode: 'none',
-    }
-);*/
 const IntroScreen = StackNavigator(
     {
         SplashScreen: {screen: SplashScreen},

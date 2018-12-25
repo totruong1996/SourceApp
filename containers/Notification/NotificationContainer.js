@@ -7,7 +7,7 @@ import {
 
 } from "react-native";
 import {Font} from "../utils/Font";
-import {Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Left, Right} from 'native-base';
+import {List, ListItem, Thumbnail, Text, Body, Left, Right} from 'native-base';
 
 export default class NotificationContainer extends Component {
     constructor(props) {
