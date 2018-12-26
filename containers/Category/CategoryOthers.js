@@ -25,7 +25,7 @@ class CategoryFood extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { isDateTimePickerVisible: false, modalVisible: false };
+        this.state = { isDateTimePickerVisible: false, modalVisible: false, keyword: '' };
     }
 
     componentWillMount() {
@@ -59,72 +59,116 @@ class CategoryFood extends Component {
         }
         return list;
     }
+    handleChange = (keyword) => {
+        this.setState({
+            keyword
+        });
+    }
+    onSearch = () => {
+        let keyword = this.state.keyword;
+        this.props.showListTravel();
+        if (keyword.trim() === '') {
+            this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' });
+        } else if (keyword.trim().toLocaleLowerCase() === 'ho chi minh' || keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh") !== -1) {
+            this.props.navigation.navigate('Category', { typeCategory: 'HCMtravel' });
+        } else if (keyword.trim().toLocaleLowerCase() === 'ha noi' || keyword.trim().toLocaleLowerCase().indexOf("hà nội") !== -1) {
+            this.props.navigation.navigate('Category', { typeCategory: 'HNtravel' });
+        } else if (keyword.trim().toLocaleLowerCase() === 'nha trang') {
+            this.props.navigation.navigate('Category', { typeCategory: 'NTtravel' });
+        } else if (keyword.trim().toLocaleLowerCase() === 'ha long' || keyword.trim().toLocaleLowerCase().indexOf("hạ long") !== -1) {
+            this.props.navigation.navigate('Category', { typeCategory: 'HLtravel' });
+        } else if (keyword.trim().toLocaleLowerCase() === 'da lat' || keyword.trim().toLocaleLowerCase().indexOf("đà lạt") !== -1) {
+            this.props.navigation.navigate('Category', { typeCategory: 'DLtravel' });
+        } else {
+            this.props.navigation.navigate('Category', { typeCategory: 'no' });
+        }
+
+    }
     render() {
+        var dict = {
+            all: '',
+            hcm: 'Hồ Chí Minh',
+            dl: "Đà Lạt",
+            nt: "Nha Trang",
+            hl: "Hạ Long",
+            hn: "Hà Nội",
+            no: "No Result..."
+        }
+        var { type } = this.props;
         let { listTravel } = this.props;
         console.log(listTravel)
         var list = listTravel.listTravel.map((item, index) => {
-            return <TouchableOpacity style={styles.containerItem} onPress={()=>this.props.handleViewDetail(item)} key={index}>
-                <Swiper style={styles.slideItem} showsButtons={false} dot={<View style={{
-                    backgroundColor: "#ccc",
-                    width: 8,
-                    height: 8,
-                    borderRadius: 4,
-                    marginLeft: 3,
-                    marginRight: 3,
-                    marginTop: 3,
-                    marginBottom: 3
-                }} />} activeDot={<View style={{
-                    backgroundColor: "#fff",
-                    width: 8,
-                    height: 8,
-                    borderRadius: 4,
-                    marginLeft: 3,
-                    marginRight: 3,
-                    marginTop: 3,
-                    marginBottom: 3
-                }} />}>
-                    <View style={styles.imageSlide}>
-                        <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
-                            <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
-                        </View>
+            if (item.address.indexOf(dict[type]) !== -1) {
+                return <TouchableOpacity style={styles.containerItem} onPress={() => this.props.handleViewDetail(item)} key={index}>
+                    <Swiper style={styles.slideItem} showsButtons={false} dot={<View style={{
+                        backgroundColor: "#ccc",
+                        width: 8,
+                        height: 8,
+                        borderRadius: 4,
+                        marginLeft: 3,
+                        marginRight: 3,
+                        marginTop: 3,
+                        marginBottom: 3
+                    }} />} activeDot={<View style={{
+                        backgroundColor: "#fff",
+                        width: 8,
+                        height: 8,
+                        borderRadius: 4,
+                        marginLeft: 3,
+                        marginRight: 3,
+                        marginTop: 3,
+                        marginBottom: 3
+                    }} />}>
+                        <View style={styles.imageSlide}>
+                            <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
+                                <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                            </View>
 
-                        <View style={styles.bgBlur} />
-                        <Image style={styles.img} source={item.images[0]} />
-                    </View>
-                    <View style={styles.imageSlide}>
-                        <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
-                            <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                            <View style={styles.bgBlur} />
+                            <Image style={styles.img} source={item.images[0]} />
                         </View>
-                        <View style={styles.bgBlur} />
-                        <Image style={styles.img} source={item.images[1]} />
-                    </View>
-                    <View style={styles.imageSlide}>
-                        <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
-                            <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                        <View style={styles.imageSlide}>
+                            <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
+                                <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                            </View>
+                            <View style={styles.bgBlur} />
+                            <Image style={styles.img} source={item.images[1]} />
                         </View>
-                        <View style={styles.bgBlur} />
-                        <Image style={styles.img} source={item.images[2]} />
-                    </View>
-                </Swiper>
-                <View style={styles.bottomItem}>
-                    <View style={styles.textItem}>
-                        <Text style={styles.desText} uppercase>{item.status}</Text>
-                        <Text style={styles.nameItem}>{item.name}</Text>
-                        <Text style={styles.priceItem}>{item.price}</Text>
-                        <View style={styles.rating}>
-                            {this._genStar(item.star)}
+                        <View style={styles.imageSlide}>
+                            <View style={{ position: 'absolute', right: 10, top: 10, width: 20, height: 20, zIndex: 10 }}>
+                                <Icon name='md-heart' style={{ fontSize: 22, color: 'rgb(255, 90, 95)' }} />
+                            </View>
+                            <View style={styles.bgBlur} />
+                            <Image style={styles.img} source={item.images[2]} />
+                        </View>
+                    </Swiper>
+                    <View style={styles.bottomItem}>
+                        <View style={styles.textItem}>
+                            <Text style={styles.desText} uppercase>{item.status}</Text>
+                            <Text style={styles.nameItem}>{item.name}</Text>
+                            <Text style={styles.priceItem}>{item.price}</Text>
+                            <View style={styles.rating}>
+                                {this._genStar(item.star)}
+                            </View>
                         </View>
                     </View>
-                </View>
-            </TouchableOpacity>;
+                </TouchableOpacity>;
+            }
+
         });
+        var NoResult = list.every(item => {
+            return item === undefined;
+        }) ? 'No Result' : '';
         return <ScrollView style={styles.container}>
             <View style={styles.viewSearch}>
                 <Item style={styles.containerSearchInput}>
                     <Icon onPress={() => {
                         this.props.navigation.goBack('HomePageContent');
                     }} name="ios-arrow-round-back" style={{ marginLeft: 10, color: "#999" }} />
-                    <Input placeholder="Hồ Chí Minh..." placeholderTextColor="#999" style={styles.inputSearch} />
+                    <Input placeholder={dict[type]} placeholderTextColor="#999" style={styles.inputSearch} onChangeText={this.handleChange} />
+                    <TouchableOpacity onPress={this.onSearch}>
+                        <Icon name="ios-search" style={{ marginRight: 10, color: "#999" }} />
+                    </TouchableOpacity>
                 </Item>
             </View>
             <View>
@@ -145,6 +189,7 @@ class CategoryFood extends Component {
                 />
             </View>
             {list}
+            <Text style={styles.titleCard}>{NoResult}</Text>
         </ScrollView>;
     }
 }
@@ -252,7 +297,17 @@ const styles = StyleSheet.create({
     rating: {
         flexDirection: 'row',
         alignItems: 'center',
-    }
+    },
+    titleCard:{
+        marginTop:10,
+        textAlign:"center",
+        color : '#484848', 
+        fontSize: 20,
+        fontFamily: Font.Roboto,
+        lineHeight: 24,
+        letterSpacing : 2,
+    
+      },
 
 
 });

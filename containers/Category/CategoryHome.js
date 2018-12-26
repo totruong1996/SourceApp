@@ -20,12 +20,13 @@ import {
     Button,
     Text,
 } from "native-base";
+import { List } from "react-native-elements";
 
 class CategoryHome extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { isDateTimePickerVisible: false, modalVisible: false };
+        this.state = { isDateTimePickerVisible: false, modalVisible: false , keyword: ''};
     }
 
     componentWillMount() {
@@ -59,7 +60,31 @@ class CategoryHome extends Component {
         }
         return list;
     }
-
+    handleChange = (keyword) => {
+        this.setState({
+            keyword
+        });
+    }
+    onSearch = () => {
+        let keyword = this.state.keyword;
+        this.props.showListHome();
+        if(keyword===''){
+            this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'ho chi minh' || keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'HCMHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'ha noi' || keyword.trim().toLocaleLowerCase().indexOf("hà nội")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'HNHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'nha trang'){
+            this.props.navigation.navigate('Category', { typeCategory: 'NTHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'ha long' || keyword.trim().toLocaleLowerCase().indexOf("hạ long")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'HLHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'da lat' || keyword.trim().toLocaleLowerCase().indexOf("đà lạt")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'DLHome' });
+        } else{
+            this.props.navigation.navigate('Category', { typeCategory: 'no' });
+        }
+       
+    }
     render() {
         var dict = {
             all: '',
@@ -67,12 +92,14 @@ class CategoryHome extends Component {
             dl:"Đà Lạt",
             nt:"Nha Trang",
             hl:"Hạ Long",
-            hn: "Hà Nội"
+            hn: "Hà Nội",
+            no: "No Result..."
         }
         var {type} = this.props;
 
         let {listHome} = this.props;
         console.log(listHome)
+        
         var list = listHome.listHome.map((item, index) => {
             if(item.address.indexOf(dict[type])!==-1){
             return <TouchableOpacity style={styles.containerItem} onPress={()=>
@@ -133,14 +160,19 @@ class CategoryHome extends Component {
             </View>
         </TouchableOpacity>;}
         });
-
+        var NoResult = list.every(item=>{
+            return item === undefined;
+        }) ? 'No Result': '';
         return <ScrollView style={styles.container}>
             <View style={styles.viewSearch}>
                 <Item style={styles.containerSearchInput}>
                     <Icon onPress={() => {
                         this.props.navigation.goBack('HomePageContent');
                     }} name="ios-arrow-round-back" style={{ marginLeft: 10, color: "#999" }} />
-                    <Input placeholder="Hồ Chí Minh..." placeholderTextColor="#999" style={styles.inputSearch} />
+                    <Input placeholder={dict[type]} placeholderTextColor="#999" style={styles.inputSearch}  onChangeText={this.handleChange}/>
+                    <TouchableOpacity onPress={this.onSearch}>
+                            <Icon name="ios-search" style={{ marginRight: 10, color: "#999" }} />
+                        </TouchableOpacity>
                 </Item>
             </View>
             <View>
@@ -160,7 +192,8 @@ class CategoryHome extends Component {
                     datePickerModeAndroid={"spinner"}
                 />
             </View>
-         { list}
+         { list }
+         <Text style = {styles.titleCard}>{NoResult}</Text>
         </ScrollView>;
     }
 }
@@ -262,7 +295,17 @@ const styles = StyleSheet.create({
     rating: {
         flexDirection: 'row',
         alignItems: 'center',
-    }
+    },
+    titleCard:{
+        marginTop:10,
+        textAlign:"center",
+        color : '#484848', 
+        fontSize: 20,
+        fontFamily: Font.Roboto,
+        lineHeight: 24,
+        letterSpacing : 2,
+    
+      },
 
 
 });

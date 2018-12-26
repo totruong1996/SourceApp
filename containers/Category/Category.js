@@ -5,7 +5,7 @@ import {
 import { StackNavigator } from "react-navigation";
 import { Font } from "../utils/Font";
 import CategoryHome from './CategoryHome';
-import  CategoryOthers from './CategoryOthers';
+import CategoryOthers from './CategoryOthers';
 import CategoryFood from './CategoryFood';
 import DetailCategory from '../DetailCategory/DetailCategory';
 import DetailHomeCategory from '../DetailCategory/DetailHomeCategory';
@@ -18,84 +18,172 @@ class CategoryContainer extends React.Component {
   constructor(props) {
     super(props);
   }
-  handleViewDetail=(item,nava)=>{
-    this.props.navigation.navigate(nava, {typeCategory : 'homeCategory', 'item': item})
+  handleViewDetail = (item, nava) => {
+    this.props.navigation.navigate(nava, { typeCategory: 'homeCategory', 'item': item })
   }
   render() {
     const { params } = this.props.navigation.state;
-    console.log("typeCategor" ,params);
-    if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-        params.typeCategory === 'travelCategory'){
+    if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'travelCategory') {
       return <CategoryOthers
-                navigation={this.props.navigation}
-                handleViewDetail={(item)=>this.handleViewDetail(item, 'DetailTravelCategory')}
-      /> ;
-    }else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-    params.typeCategory === 'foodCategory'){
-        return <CategoryFood
-                navigation={this.props.navigation}
-                handleViewDetail={(item)=>this.handleViewDetail(item,'DetailFoodCategory')}
-           
-      /> ;
-    }else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-    params.typeCategory === 'homeCategory'){
-        return <CategoryHome 
-                navigation={this.props.navigation}
-                handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
-                type='all'
-                />
-        }
-    else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-      params.typeCategory === 'HCMHome'){
-      return <CategoryHome 
-      navigation={this.props.navigation}
-      handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
-      type='hcm'
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='all'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HCMtravel') {
+      return <CategoryOthers
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='hcm'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HNtravel') {
+      return <CategoryOthers
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='hn'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'DLtravel') {
+      return <CategoryOthers
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='dl'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NTtravel') {
+      return <CategoryOthers
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='nt'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HLtravel') {
+      return <CategoryOthers
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='hl'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NoResult') {
+      return <CategoryOthers
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailTravelCategory')}
+        type='no'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'foodCategory') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='all'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HNfood') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='hn'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HCMfood') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='hcm'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'DLfood') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='dl'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HLfood') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='hl'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NTfood') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='nt'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NoResult') {
+      return <CategoryFood
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailFoodCategory')}
+        type='no'
+      />;
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'homeCategory') {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='all'
       />
     }
-    else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-    params.typeCategory === 'DLHome'){
-    return <CategoryHome 
-    navigation={this.props.navigation}
-    handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
-    type='dl'
-    />
-      }
-      else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-      params.typeCategory === 'NTHome'){
-      return <CategoryHome 
-      navigation={this.props.navigation}
-      handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
-      type='nt'
+    else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HCMHome') {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='hcm'
       />
     }
-    else if(typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
-    params.typeCategory === 'HNHome'){
-    return <CategoryHome 
-    navigation={this.props.navigation}
-    handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
-    type='hn'
-    />
-  }
-  else {
-  return <CategoryHome 
-  navigation={this.props.navigation}
-  handleViewDetail={(item)=>this.handleViewDetail(item,'DetailHomeCategory' )}
-  type='hl'
-  />
-}
+    else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'DLHome') {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='dl'
+      />
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NTHome') {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='nt'
+      />
+    }  else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'HNHome') {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='hn'
+      />
+    } else if (typeof params !== 'undefined' && typeof params.typeCategory !== 'undefined' && params.typeCategory !== '' &&
+      params.typeCategory === 'NoResult') {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='no'
+      />
+    } else {
+      return <CategoryHome
+        navigation={this.props.navigation}
+        handleViewDetail={(item) => this.handleViewDetail(item, 'DetailHomeCategory')}
+        type='hl'
+      />
+    }
   }
 }
 const Category = StackNavigator(
   {
     CategoryContainer: { screen: CategoryContainer },
     DetailCategory: { screen: DetailCategory },
-    DetailHomeCategory : {screen: DetailHomeCategory},
-    DetailFoodCategory :{screen: DetailFoodCategory},
-    DetailTravelCategory:{screen: DetailTravelCategory},
+    DetailHomeCategory: { screen: DetailHomeCategory },
+    DetailFoodCategory: { screen: DetailFoodCategory },
+    DetailTravelCategory: { screen: DetailTravelCategory },
   },
   {
-    headerMode: 'none',    
+    headerMode: 'none',
     navigationOptions: {
       gesturesEnabled: true,
       headerTitleStyle: {
@@ -104,7 +192,7 @@ const Category = StackNavigator(
         fontFamily: Font.Montserrat
       }
     },
-  
+
   }
 );
 

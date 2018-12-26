@@ -28,6 +28,12 @@ import DetailFoodCategory from '../DetailCategory/DetailFoodCategory';
 import DetailTravelCategory from '../DetailCategory/DetailTravelCategory';
 
 class HomeContent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            keyword: ''
+        }
+    }
     render() {
         return (
             <ScrollView
@@ -63,7 +69,7 @@ class HomePageContent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { showContent: 'homeContent', isDateTimePickerVisible: false }
+        this.state = { showContent: 'homeContent', isDateTimePickerVisible: false, keyword: ''}
     }
 
     _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
@@ -82,6 +88,31 @@ class HomePageContent extends React.Component {
             list.push(<Icon name='ios-star' style={{ fontSize: 14, color: '#008489', }} key={i} />);
         }
         return list;
+    }
+    handleChange = (keyword) => {
+        this.setState({
+            keyword
+        });
+    }
+    onSearch = () => {
+        let keyword = this.state.keyword;
+        this.props.showListHome();
+        if(keyword.trim()===''){ 
+            this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'ho chi minh' || keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'HCMHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'ha noi' || keyword.trim().toLocaleLowerCase().indexOf("hà nội")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'HNHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'nha trang'){
+            this.props.navigation.navigate('Category', { typeCategory: 'NTHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'ha long' || keyword.trim().toLocaleLowerCase().indexOf("hạ long")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'HLHome' });
+        } else if(keyword.trim().toLocaleLowerCase() === 'da lat' || keyword.trim().toLocaleLowerCase().indexOf("đà lạt")!==-1){
+            this.props.navigation.navigate('Category', { typeCategory: 'DLHome' });
+        } else{
+            this.props.navigation.navigate('Category', { typeCategory: 'no' });
+        }
+       
     }
     render() {
         const { showContent } = this.state;
@@ -116,7 +147,7 @@ class HomePageContent extends React.Component {
                         <Body>
                             <TouchableOpacity transparent style={{ paddingTop: 5, paddingBottom: 5 }}
                                 onPress={() => {
-                                    this.props.navigation.navigate('DetailHomeCategory', {typeCategory : 'homeCategory', 'item': item})
+                                    this.props.navigation.navigate('DetailHomeCategory', { typeCategory: 'homeCategory', 'item': item })
                                 }}
                             >
                                 <Text style={styles.locationItemCard} uppercase>{item.quantity}</Text>
@@ -162,7 +193,7 @@ class HomePageContent extends React.Component {
                         <Body>
                             <TouchableOpacity transparent style={{ paddingTop: 5, paddingBottom: 5 }}
                                 onPress={() => {
-                                    this.props.navigation.navigate('DetailFoodCategory', {typeCategory : 'homeCategory', 'item': item})
+                                    this.props.navigation.navigate('DetailFoodCategory', { typeCategory: 'homeCategory', 'item': item })
                                 }}
                             >
                                 <Text style={styles.locationItemCard} uppercase>{item.status}</Text>
@@ -205,7 +236,7 @@ class HomePageContent extends React.Component {
                         <Body>
                             <TouchableOpacity transparent style={{ paddingTop: 5, paddingBottom: 5 }}
                                 onPress={() => {
-                                    this.props.navigation.navigate('DetailTravelCategory', {typeCategory : 'homeCategory', 'item': item})
+                                    this.props.navigation.navigate('DetailTravelCategory', { typeCategory: 'homeCategory', 'item': item })
                                 }}
                             >
                                 <Text style={styles.locationItemCard} uppercase>{item.status}</Text>
@@ -227,12 +258,20 @@ class HomePageContent extends React.Component {
                     <Item
                         style={styles.containerSearchInput}
                     >
-                        <Icon name="ios-search" style={{ marginLeft: 10, color: "#999" }} />
+
                         <Input
                             placeholder="Hồ Chí Minh..."
                             placeholderTextColor="#999"
                             style={styles.inputSearch}
+                            name='keyword'
+                            onChangeText={this.handleChange}
                         />
+                        <TouchableOpacity
+                            onPress={this.onSearch}
+                        >
+                            <Icon name="ios-search" style={{ marginRight: 10, color: "#999" }} />
+                        </TouchableOpacity>
+
                     </Item>
                 </View>
 
@@ -339,11 +378,11 @@ class HomePageContent extends React.Component {
 
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Địa điểm nổi bật</Text>
-                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} 
-                    onPress={() => {
-                        this.props.showListHome()
-                        this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
-                    }}>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                        onPress={() => {
+                            this.props.showListHome()
+                            this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
+                        }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
                         <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
                     </TouchableOpacity>
@@ -523,11 +562,11 @@ class HomePageContent extends React.Component {
                 </ScrollView>
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Nhà ở</Text>
-                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}    
-                    onPress={() => {
-                        this.props.showListHome()
-                        this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
-                    }}>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                        onPress={() => {
+                            this.props.showListHome()
+                            this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
+                        }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
                         <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
 
@@ -542,11 +581,11 @@ class HomePageContent extends React.Component {
                 </ScrollView>
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Khám phá</Text>
-                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}  
-                    onPress={() => {
-                        this.props.showListTravel()
-                        this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' })
-                    }}>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                        onPress={() => {
+                            this.props.showListTravel()
+                            this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' })
+                        }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
                         <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
                     </TouchableOpacity>
@@ -561,10 +600,10 @@ class HomePageContent extends React.Component {
                 <View style={styles.headingCategory}>
                     <Text style={styles.headingText}>Ẩm thực</Text>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
-                    onPress={() => {
-                        this.props.showListFood()
-                        this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' })
-                    }}>
+                        onPress={() => {
+                            this.props.showListFood()
+                            this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' })
+                        }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
                         <Icon name='ios-arrow-forward-outline' style={{ fontSize: 14, color: '#484848', marginLeft: 5 }} />
                     </TouchableOpacity>
@@ -598,9 +637,9 @@ const HomePage = StackNavigator(
     {
         HomePageContent: { screen: connect(mapStateToProps, mapDispatchToProps)(HomePageContent) },
         Category: { screen: Category },
-        DetailHomeCategory:{screen:DetailHomeCategory},
-        DetailFoodCategory:{screen:DetailFoodCategory},
-        DetailTravelCategory:{screen:DetailTravelCategory},
+        DetailHomeCategory: { screen: DetailHomeCategory },
+        DetailFoodCategory: { screen: DetailFoodCategory },
+        DetailTravelCategory: { screen: DetailTravelCategory },
     },
     {
         headerMode: 'none',
