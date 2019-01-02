@@ -14,7 +14,7 @@ const listTravel = [
         phone: "09647376541",
         address : "Công Viên Đá Nhật - RinRin Park. Xuân Thới Thượng, 87/8p ấp Xuân Thới Đông 1. Xuân Thới Đông. Hóc Môn, Hồ Chí Minh 700000, Việt Nam",
         detail:"Cùng chuyến đi từ Cần Thơ đi công viên kỳ quan Long An, tụi mình chạy thêm 1 đoạn tầm 14km tới Hóc Môn - TPHCM. Tụi mình tham quan công viên Đá Nhật bản - Rin rin park. Vé vào cổng là 50k/người. ",
-        images:[require('../../images/travel/k.jpg'), require('../../images/travel/koi1.jpg'), require('../../images/travel/koi2.jpg')],
+        images:[require('../../images/travel/k.jpg'), require('../../images/travel/koi1.jpg'), require('../../images/travel/k.jpg')],
 
     },
     {
@@ -31,7 +31,7 @@ const listTravel = [
         phone: "Đang cập nhật",
         address : "10 Mai Chí Thọ, Quận 2, Hồ Chí Minh 700000, Việt Nam",
         detail:"Lần đầu đến nơi này thật sự bị choáng ngợp bởi không gian rộng lớn của nó. Công viên rất đẹp luôn ấy, bị siêu lòng liền. Vì là khu đô thị mới nên cũng khá ít người biết đến nên cảm thấy không quá ồn ào, xô bồ như ở trong trung tâm thành phố. Buổi chiều tối mọi người thường ra đây dạo, ngồi vui chơi. Cảm giác sau 1 ngày làm việc học hành mệt mỏi ra đây để tìm sự thư giãn là rất tuyệt vời luôn. Cây cảnh xanh tươi, cách trang trí của công việc cũng rất đẹp mắt, tha hồ cho các bạn trẻ chụp hình check - in sống ảo",
-        images:[require('../../images/travel/sala.jpg'), require('../../images/travel/sala1.jpg'), require('../../images/travel/sala2.jpeg')],
+        images:[require('../../images/travel/sala.jpg'), require('../../images/travel/sala1.jpg'), require('../../images/travel/sala.jpg')],
     },
     {
         status: "Đang mở cửa",
@@ -47,7 +47,7 @@ const listTravel = [
         phone: "Đang cập nhật",
         address : "30 Bờ Bao Tân Thắng, P. Sơn Kỳ, Quận Tân Phú, Hồ Chí Minh 700000, Việt Nam",
         detail:"Những cảm giác thật thú vị dưới cái lạnh 10 độ C, thích quá thích Địa điểm: AEON MALL Celadon Tân Phú Thời gian: Từ 9:00 ngày 18/12/2015 (Thứ sáu) đến 21:00 ngày 03/01/2016 (Chủ nhật) 30/11/2015 Giá vé: -Người lớn 100,000 VND, trẻ em: 50,000 VND",
-        images:[require('../../images/travel/AONE.jpg'), require('../../images/travel/AONE1.jpg'), require('../../images/travel/AONE2.jpg')],
+        images:[require('../../images/travel/AONE.jpg'), require('../../images/travel/AONE1.jpg'), require('../../images/travel/AONE.jpg')],
 
     }
 ]

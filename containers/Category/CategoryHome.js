@@ -67,7 +67,6 @@ class CategoryHome extends Component {
     }
     onSearch = () => {
         let keyword = this.state.keyword;
-        this.props.showListHome();
         if(keyword===''){
             this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' });
         } else if(keyword.trim().toLocaleLowerCase() === 'ho chi minh' || keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh")!==-1){

@@ -66,7 +66,6 @@ class CategoryFood extends Component {
     }
     onSearch = () => {
         let keyword = this.state.keyword;
-        this.props.showListTravel();
         if (keyword.trim() === '') {
             this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' });
         } else if (keyword.trim().toLocaleLowerCase() === 'ho chi minh' || keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh") !== -1) {

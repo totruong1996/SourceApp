@@ -96,7 +96,6 @@ class HomePageContent extends React.Component {
     }
     onSearch = () => {
         let keyword = this.state.keyword;
-        this.props.showListHome();
         if(keyword.trim()===''){ 
             this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' });
         } else if(keyword.trim().toLocaleLowerCase() === 'ho chi minh' || keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh")!==-1){
@@ -321,7 +320,6 @@ class HomePageContent extends React.Component {
                             <Body>
                                 <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                     onPress={() => {
-                                        this.props.showListHome()
                                         this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
                                     }}
                                 >
@@ -343,7 +341,6 @@ class HomePageContent extends React.Component {
                             <Body>
                                 <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                     onPress={() => {
-                                        this.props.showListTravel()
                                         this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' })
                                     }}
                                 >
@@ -365,7 +362,6 @@ class HomePageContent extends React.Component {
                             <Body>
                                 <Button transparent style={{ justifyContent: 'center', alignItems: 'center' }}
                                     onPress={() => {
-                                        this.props.showListFood()
                                         this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' })
                                     }}
                                 >
@@ -380,7 +376,6 @@ class HomePageContent extends React.Component {
                     <Text style={styles.headingText}>Địa điểm nổi bật</Text>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                         onPress={() => {
-                            this.props.showListHome()
                             this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
                         }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
@@ -395,7 +390,6 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.showListHome()
                                 this.props.navigation.navigate('Category', { typeCategory: 'HCMHome' })
                             }}
                         >
@@ -416,7 +410,6 @@ class HomePageContent extends React.Component {
                                     justifyContent: 'center'
                                 }}
                                     onPress={() => {
-                                        this.props.showListHome()
                                         this.props.navigation.navigate('Category', { typeCategory: 'HCMHome' })
                                     }}
                                 >
@@ -429,7 +422,6 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.showListHome()
                                 this.props.navigation.navigate('Category', { typeCategory: 'DLHome' })
                             }}
                         >
@@ -450,7 +442,6 @@ class HomePageContent extends React.Component {
                                     justifyContent: 'center'
                                 }}
                                     onPress={() => {
-                                        this.props.showListHome()
                                         this.props.navigation.navigate('Category', { typeCategory: 'DLHome' })
                                     }}
                                 >
@@ -462,7 +453,6 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.showListHome()
                                 this.props.navigation.navigate('Category', { typeCategory: 'HLHome' })
                             }}
                         >
@@ -483,7 +473,6 @@ class HomePageContent extends React.Component {
                                     justifyContent: 'center'
                                 }}
                                     onPress={() => {
-                                        this.props.showListHome()
                                         this.props.navigation.navigate('Category', { typeCategory: 'HLHome' })
                                     }}
                                 >
@@ -496,7 +485,6 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.showListHome()
                                 this.props.navigation.navigate('Category', { typeCategory: 'NTHome' })
                             }}
                         >
@@ -517,7 +505,6 @@ class HomePageContent extends React.Component {
                                     justifyContent: 'center'
                                 }}
                                     onPress={() => {
-                                        this.props.showListHome()
                                         this.props.navigation.navigate('Category', { typeCategory: 'NTHome' })
                                     }}
                                 >
@@ -529,7 +516,6 @@ class HomePageContent extends React.Component {
                     <Card transparent style={styles.cardContainerOtherCategory}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.showListHome()
                                 this.props.navigation.navigate('Category', { typeCategory: 'HNHome' })
                             }}
                         >
@@ -550,7 +536,6 @@ class HomePageContent extends React.Component {
                                     justifyContent: 'center'
                                 }}
                                     onPress={() => {
-                                        this.props.showListHome()
                                         this.props.navigation.navigate('Category', { typeCategory: 'HNHome' })
                                     }}
                                 >
@@ -564,7 +549,6 @@ class HomePageContent extends React.Component {
                     <Text style={styles.headingText}>Nhà ở</Text>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                         onPress={() => {
-                            this.props.showListHome()
                             this.props.navigation.navigate('Category', { typeCategory: 'homeCategory' })
                         }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
@@ -583,7 +567,6 @@ class HomePageContent extends React.Component {
                     <Text style={styles.headingText}>Khám phá</Text>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                         onPress={() => {
-                            this.props.showListTravel()
                             this.props.navigation.navigate('Category', { typeCategory: 'travelCategory' })
                         }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>
@@ -601,7 +584,6 @@ class HomePageContent extends React.Component {
                     <Text style={styles.headingText}>Ẩm thực</Text>
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                         onPress={() => {
-                            this.props.showListFood()
                             this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' })
                         }}>
                         <Text style={{ fontSize: 14, color: '#484848', fontFamily: Font.RobotoLight }}>Xem tất cả</Text>

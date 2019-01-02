@@ -66,7 +66,6 @@ class CategoryFood extends React.Component {
     }
     onSearch = () => {
         let keyword = this.state.keyword;
-        this.props.showListFood();
         if(keyword.trim()===''){ 
             this.props.navigation.navigate('Category', { typeCategory: 'foodCategory' });
         } else if(keyword.trim().toLocaleLowerCase() === 'ho chi minh'|| keyword.trim().toLocaleLowerCase().indexOf("hồ chí minh")!==-1){
