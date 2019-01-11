@@ -57,8 +57,7 @@ class SaveContainer extends React.Component {
     render() {
         return <FacebookExample navigation={this.props.navigation}
                                 handleViewDetail={() => {
-                                    this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'})
-                                }}
+                                this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'})}}
         />;
     }
 }

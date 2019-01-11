@@ -159,40 +159,40 @@ class DetailCategory extends React.Component {
                   <View style={styles.itemReview}>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5}}>
                       <Icon name='ios-pricetags-outline' style={{fontSize: 16, color: '#484848', marginRight: 10, }} />
-                      <Text style={styles.nameAuthor}>Tuấn Đặng</Text>
+                      <Text style={styles.nameAuthor}>Hiền Phạm</Text>
                     </View>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5}}>
                       <Icon name='ios-calendar-outline' style={{fontSize: 14, color: '#484848', marginRight: 10, }} />
                       <Text style={styles.dateTime}>22/10/2017</Text>
                     </View>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5 ,flexWrap: 'wrap'}}>
-                      <Text style={styles.review}>Nhà đầy đủ tiện nghi , không gian thoải mái . Giá cả hợp lý phù hợp với tất cả mọi người</Text>
+                      <Text style={styles.review}>Kì nghỉ tuyệt vời</Text>
                     </View>
                   </View>
                   <View style={styles.itemReview}>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5}}>
                       <Icon name='ios-pricetags-outline' style={{fontSize: 16, color: '#484848', marginRight: 10, }} />
-                      <Text style={styles.nameAuthor}>Tuấn Đặng</Text>
+                      <Text style={styles.nameAuthor}>Heley</Text>
                     </View>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5}}>
                       <Icon name='ios-calendar-outline' style={{fontSize: 14, color: '#484848', marginRight: 10, }} />
                       <Text style={styles.dateTime}>22/10/2017</Text>
                     </View>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5 ,flexWrap: 'wrap'}}>
-                      <Text style={styles.review}>Nhà đầy đủ tiện nghi , không gian thoải mái . Giá cả hợp lý phù hợp với tất cả mọi người</Text>
+                      <Text style={styles.review}>That's great!!!</Text>
                     </View>
                   </View>
                   <View style={[styles.itemReview, {borderBottomWidth: 0}]}>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5}}>
                       <Icon name='ios-pricetags-outline' style={{fontSize: 16, color: '#484848', marginRight: 10, }} />
-                      <Text style={styles.nameAuthor}>Tuấn Đặng</Text>
+                      <Text style={styles.nameAuthor}>Keerthi</Text>
                     </View>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5}}>
                       <Icon name='ios-calendar-outline' style={{fontSize: 14, color: '#484848', marginRight: 10, }} />
                       <Text style={styles.dateTime}>22/10/2017</Text>
                     </View>
                     <View style={{flexDirection : 'row', alignItems: 'center', marginBottom: 5, marginTop: 5 ,flexWrap: 'wrap'}}>
-                      <Text style={styles.review}>Nhà đầy đủ tiện nghi , không gian thoải mái . Giá cả hợp lý phù hợp với tất cả mọi người</Text>
+                      <Text style={styles.review}>This is the best place!</Text>
                     </View>
                   </View>
             </View>
@@ -217,9 +217,9 @@ class DetailCategory extends React.Component {
                       >
                         <Body>
                           <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5 }}
-                            onPress={()=>{
-                              this.props.navigation.navigate('Category', {typeCategory : 'homeCategory'})
-                            }}
+                            onPress={() => {
+                            this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'});
+                        }}
                           >
                             <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
                             <Text style={styles.titleCard} uppercase={false}>LiveShow Âm Nhạc</Text>
@@ -247,9 +247,9 @@ class DetailCategory extends React.Component {
                       >
                         <Body>
                           <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5 }}
-                            onPress={()=>{
-                              this.props.navigation.navigate('Category', {typeCategory : 'homeCategory'})
-                            }}
+                            onPress={() => {
+                            this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'});
+                        }}
                           >
                             <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
                             <Text style={styles.titleCard} uppercase={false}>LiveShow Âm Nhạc</Text>
@@ -277,9 +277,9 @@ class DetailCategory extends React.Component {
                       >
                         <Body>
                           <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5 }}
-                            onPress={()=>{
-                              this.props.navigation.navigate('Category', {typeCategory : 'homeCategory'})
-                            }}
+                            onPress={() => {
+                            this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'});
+                        }}
                           >
                             <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
                             <Text style={styles.titleCard} uppercase={false}>LiveShow Âm Nhạc</Text>
@@ -307,9 +307,9 @@ class DetailCategory extends React.Component {
                       >
                         <Body>
                           <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5 }}
-                            onPress={()=>{
-                              this.props.navigation.navigate('Category', {typeCategory : 'homeCategory'})
-                            }}
+                            onPress={() => {
+                            this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'});
+                        }}
                           >
                             <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
                             <Text style={styles.titleCard} uppercase={false}>LiveShow Âm Nhạc</Text>
@@ -337,9 +337,9 @@ class DetailCategory extends React.Component {
                       >
                         <Body>
                           <TouchableOpacity transparent style={{paddingTop: 5, paddingBottom: 5 }}
-                            onPress={()=>{
-                              this.props.navigation.navigate('Category', {typeCategory : 'homeCategory'})
-                            }}
+                            onPress={() => {
+                            this.props.navigation.navigate('DetailCategory', {typeCategory: 'homeCategory'});
+                        }}
                           >
                             <Text style={styles.locationItemCard} uppercase>Hòa tấu saxophone - Hồ Chí Minh</Text>
                             <Text style={styles.titleCard} uppercase={false}>LiveShow Âm Nhạc</Text>
