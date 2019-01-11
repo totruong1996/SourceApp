@@ -70,11 +70,7 @@ class DetailCategory extends React.Component {
             <View style={styles.textItem}>
                 <Text style={styles.desText} uppercase>{item.status}</Text>
                 <View style={styles.rating}>
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
-                  <Icon name='ios-star' style={{fontSize: 14, color: '#008489', }} />
+                   {this._genStar(item.star)}
                 </View>
                 <Text style={styles.nameItem}>{item.name}</Text>
                 <Text style={{fontSize : 12, fontWeight : 'bold',fontFamily :Font.RobotoLight , marginTop: 5}} uppercase>{item.address}
@@ -147,7 +143,10 @@ class DetailCategory extends React.Component {
                  Chia sẻ :
                 </Text>
                 <View style={{flexDirection: 'row', justifyContent : 'space-around', marginTop: 10, marginBottom : 5}}>
-                {this._genStar(item.star)}
+                  <Icon name='logo-twitter' style={{fontSize: 16, color: '#484848', }} />
+                  <Icon name='logo-instagram' style={{fontSize: 16, color: '#484848', }} />
+                  <Icon name='md-mail' style={{fontSize: 16, color: '#484848', }} />
+                  <Icon name='logo-facebook' style={{fontSize: 16, color: '#484848', }} />
                 </View>
             </View>
           </View>
